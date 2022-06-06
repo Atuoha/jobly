@@ -58,6 +58,8 @@ class _SingleCompanyState extends State<SingleCompany> {
             Flexible(
               child: Text(
                 widget.companyTitle,
+                  maxLines:1,
+                  overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: kColor3,

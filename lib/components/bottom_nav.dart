@@ -5,7 +5,7 @@ import 'package:job_apply/screens/home_screen.dart';
 
 import '../screens/companies_screen.dart';
 import '../screens/profile_screen.dart';
-import '../screens/selected_companies_screen.dart';
+import '../screens/saved_jobs.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
 
@@ -21,7 +21,8 @@ class _BottomNavState extends State<BottomNav> {
   final List _pages = const [
     HomeScreen(),
     CompaniesScreen(),
-    SelectedCompaniesScreen(),
+    '',
+    SavedJobsScreen(),
     ProfileScreen(),
   ];
 
@@ -168,7 +169,7 @@ class _BottomNavState extends State<BottomNav> {
                 ],
               ),
             ),
-            _pages[pageIndex],
+            _pages[pageIndex == 2 ? 3 :pageIndex],
           ],
         ),
       ),

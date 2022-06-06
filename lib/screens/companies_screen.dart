@@ -88,7 +88,7 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
                   ),
                   tagIndex == index
                       ? const Icon(
-                          CupertinoIcons.multiply,
+                          Icons.close,
                           color: Colors.white,
                           size: 15,
                         )
