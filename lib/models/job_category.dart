@@ -1,9 +1,9 @@
 class JobCategory {
-  final int catID;
+  final int id;
   final String title;
 
   JobCategory({
-    required this.catID,
+    required this.id,
     required this.title,
   });
 }

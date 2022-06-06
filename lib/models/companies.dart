@@ -1,5 +1,5 @@
 class Company {
-  final int companyID;
+  final int id;
   final String name;
   final String description;
   final String headquaters;
@@ -8,7 +8,7 @@ class Company {
   final int companyCategory;
 
   Company({
-    required this.companyID,
+    required this.id,
     required this.name,
     required this.description,
     required this.headquaters,
