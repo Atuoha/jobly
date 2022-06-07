@@ -1,11 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_apply/constants/color.dart';
 import 'package:job_apply/providers/companies.dart';
 import 'package:job_apply/providers/job_category.dart';
+import 'package:job_apply/widgets/company_modal.dart';
 import 'package:provider/provider.dart';
 
 import '../components/single_company.dart';
+import '../providers/jobs.dart';
 import '../widgets/search_container.dart';
 
 class CompaniesScreen extends StatefulWidget {
@@ -110,6 +111,7 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
     Size size = MediaQuery.of(context).size;
     var companyData =
         Provider.of<CompanyData>(context, listen: false).companyCategory;
+    var jobData = Provider.of<JobData>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
       child: Column(
@@ -146,13 +148,25 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
                 crossAxisCount: 2,
                 children: companyData
                     .map(
-                      (company) => SingleCompany(
-                        companyId: company.id,
-                        companyImgUrl: company.imgUrl,
-                        companyLocation: company.headquaters,
-                        companyTitle: company.name,
-                        desc: company.description,
-                        // type: ,
+                      (company) => GestureDetector(
+                        onTap: () => showModalBottomSheet(
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) => CompanyModal(
+                            name: company.name,
+                            companyImgUrl: company.imgUrl,
+                            companyLocation: company.headquaters,
+                            jobs: jobData.companyJobs(company.id),
+                          ),
+                        ),
+                        child: SingleCompany(
+                          companyId: company.id,
+                          companyImgUrl: company.imgUrl,
+                          companyLocation: company.headquaters,
+                          companyTitle: company.name,
+                          desc: company.description,
+                          // type: ,
+                        ),
                       ),
                     )
                     .toList(),

@@ -15,6 +15,8 @@ import '../providers/jobs.dart';
 class JobsScreen extends StatefulWidget {
   static const routeName = "/jobs_screen";
 
+  const JobsScreen({Key? key}) : super(key: key);
+
   @override
   State<JobsScreen> createState() => _JobsScreenState();
 }

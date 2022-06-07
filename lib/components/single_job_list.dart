@@ -10,14 +10,14 @@ class JobSingle extends StatefulWidget {
   final String companyTitle;
   final String jobTitle;
   final String companyLocation;
-  JobSingle({
+  const JobSingle({Key? key, 
     required this.jobId,
     required this.jobType,
     required this.companyImgUrl,
     required this.companyLocation,
     required this.companyTitle,
     required this.jobTitle,
-  });
+  }) : super(key: key);
   @override
   State<JobSingle> createState() => _JobSingleState();
 }

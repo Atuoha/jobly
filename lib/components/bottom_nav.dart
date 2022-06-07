@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:job_apply/constants/color.dart';
 import 'package:job_apply/screens/home_screen.dart';
@@ -7,7 +6,6 @@ import '../screens/companies_screen.dart';
 import '../screens/profile_screen.dart';
 import '../screens/saved_jobs.dart';
 import 'package:flutter/services.dart';
-import 'dart:math';
 
 import '../widgets/top_profile.dart';
 

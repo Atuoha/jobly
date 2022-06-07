@@ -8,14 +8,14 @@ class SingleCompany extends StatefulWidget {
   final String companyImgUrl;
   final String companyTitle;
   final String companyLocation;
-  SingleCompany({
+  const SingleCompany({Key? key, 
     required this.companyId,
     required this.companyImgUrl,
     required this.companyLocation,
     required this.companyTitle,
     required this.desc,
     // required this.type,
-  });
+  }) : super(key: key);
   @override
   State<SingleCompany> createState() => _SingleCompanyState();
 }

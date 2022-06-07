@@ -9,13 +9,13 @@ class HomeSingle extends StatefulWidget {
   final String companyTitle;
   final String jobTitle;
   final String companyLocation;
-  HomeSingle({
+  const HomeSingle({Key? key, 
     required this.jobId,
     required this.companyImgUrl,
     required this.companyLocation,
     required this.companyTitle,
     required this.jobTitle,
-  });
+  }) : super(key: key);
   @override
   State<HomeSingle> createState() => _HomeSingleState();
 }

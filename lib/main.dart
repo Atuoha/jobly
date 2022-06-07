@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           ),
           home: const BottomNav(),
           routes: {
-            JobsScreen.routeName: (context) => JobsScreen(),
+            JobsScreen.routeName: (context) => const JobsScreen(),
           }),
     );
   }

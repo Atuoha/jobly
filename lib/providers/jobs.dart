@@ -16,6 +16,10 @@ class JobData extends ChangeNotifier {
     jobCategories.clear();
   }
 
+  List companyJobs(companyId) {
+    return jobs.where((job) => job.companyID == companyId).toList();
+  }
+
   List jobCategories = [];
 
   void toggleSelected(int id) {
