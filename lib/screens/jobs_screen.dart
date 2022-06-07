@@ -4,6 +4,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:job_apply/constants/color.dart';
+import 'package:job_apply/widgets/job_modal.dart';
 import 'package:job_apply/widgets/search_container.dart';
 import 'package:provider/provider.dart';
 
@@ -120,24 +121,22 @@ class _JobsScreenState extends State<JobsScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Builder(
-          builder: (context) {
-            return GestureDetector(
-              onTap: ()=> Navigator.of(context).pop(),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, top: 8.0),
-                child: Container(
-                  decoration:
-                      const BoxDecoration(color: kColor1, shape: BoxShape.circle),
-                  child: const Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
+        leading: Builder(builder: (context) {
+          return GestureDetector(
+            onTap: () => Navigator.of(context).pop(),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20, top: 8.0),
+              child: Container(
+                decoration:
+                    const BoxDecoration(color: kColor1, shape: BoxShape.circle),
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
                 ),
               ),
-            );
-          }
-        ),
+            ),
+          );
+        }),
         actions: [
           Transform.rotate(
             angle: -40 * pi / 180,
@@ -173,19 +172,19 @@ class _JobsScreenState extends State<JobsScreen> {
         ],
       ),
       body: Container(
-        padding: const EdgeInsets.only(top:100),
+        padding: const EdgeInsets.only(top: 100),
         decoration: const BoxDecoration(
           gradient: kGradient,
         ),
         child: Column(
           children: [
             const Padding(
-              padding:  EdgeInsets.symmetric(horizontal:20.0),
-              child:  SearchContainer(),
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: SearchContainer(),
             ),
             const SizedBox(height: 15),
             Padding(
-              padding: const EdgeInsets.only(left:20.0),
+              padding: const EdgeInsets.only(left: 20.0),
               child: SizedBox(
                 height: 32,
                 child: ListView.builder(
@@ -204,23 +203,45 @@ class _JobsScreenState extends State<JobsScreen> {
                 height: size.height / 1.4,
                 width: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     itemCount: jobData.jobCategories.length,
-                    itemBuilder: (context, index) => JobSingle(
-                      jobId: jobData.jobCategories[index].id,
-                      companyImgUrl: companiesProvider
-                          .findByID(jobData.jobCategories[index].companyID)
-                          .imgUrl,
-                      jobType: jobData.jobCategories[index].jobType,
-                      companyLocation: companiesProvider
-                          .findByID(jobData.jobCategories[index].companyID)
-                          .headquaters,
-                      companyTitle: companiesProvider
-                          .findByID(jobData.jobCategories[index].companyID)
-                          .name,
-                      jobTitle: jobData.jobCategories[index].title,
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () => showModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (context) => JobModal(
+                          jobId: jobData.jobCategories[index].id,
+                          jobType: jobData.jobCategories[index].jobType,
+                          companyImgUrl: companiesProvider
+                              .findByID(jobData.jobCategories[index].companyID)
+                              .imgUrl,
+                          companyLocation: companiesProvider
+                              .findByID(jobData.jobCategories[index].companyID)
+                              .headquaters,
+                          companyTitle: companiesProvider
+                              .findByID(jobData.jobCategories[index].companyID)
+                              .name,
+                          jobTitle: jobData.jobCategories[index].title,
+                          requirements:
+                              jobData.jobCategories[index].requirements,
+                        ),
+                      ),
+                      child: JobSingle(
+                        jobId: jobData.jobCategories[index].id,
+                        companyImgUrl: companiesProvider
+                            .findByID(jobData.jobCategories[index].companyID)
+                            .imgUrl,
+                        jobType: jobData.jobCategories[index].jobType,
+                        companyLocation: companiesProvider
+                            .findByID(jobData.jobCategories[index].companyID)
+                            .headquaters,
+                        companyTitle: companiesProvider
+                            .findByID(jobData.jobCategories[index].companyID)
+                            .name,
+                        jobTitle: jobData.jobCategories[index].title,
+                      ),
                     ),
                   ),
                 ),

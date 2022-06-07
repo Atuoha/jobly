@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../components/single_job_list.dart';
 import '../providers/companies.dart';
 import '../providers/jobs.dart';
+import '../widgets/job_modal.dart';
 import '../widgets/search_container.dart';
 
 class SavedJobsScreen extends StatefulWidget {
@@ -77,19 +78,41 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
                   padding: EdgeInsets.zero,
 
                       itemCount: jobData.selectedJobs.length,
-                      itemBuilder: (context, index) => JobSingle(
-                        jobId: jobData.selectedJobs[index].id,
-                        companyImgUrl: companiesProvider
-                            .findByID(jobData.selectedJobs[index].companyID)
-                            .imgUrl,
-                        jobType: jobData.selectedJobs[index].jobType,
-                        companyLocation: companiesProvider
-                            .findByID(jobData.selectedJobs[index].companyID)
-                            .headquaters,
-                        companyTitle: companiesProvider
-                            .findByID(jobData.selectedJobs[index].companyID)
-                            .name,
-                        jobTitle: jobData.selectedJobs[index].title,
+                      itemBuilder: (context, index) => GestureDetector(
+                      onTap: () => showModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (context) => JobModal(
+                          jobId: jobData.selectedJobs[index].id,
+                          jobType: jobData.selectedJobs[index].jobType,
+                          companyImgUrl: companiesProvider
+                              .findByID(jobData.selectedJobs[index].companyID)
+                              .imgUrl,
+                          companyLocation: companiesProvider
+                              .findByID(jobData.selectedJobs[index].companyID)
+                              .headquaters,
+                          companyTitle: companiesProvider
+                              .findByID(jobData.selectedJobs[index].companyID)
+                              .name,
+                          jobTitle: jobData.selectedJobs[index].title,
+                          requirements:
+                              jobData.selectedJobs[index].requirements,
+                        ),
+                      ),
+                      child: JobSingle(
+                          jobId: jobData.selectedJobs[index].id,
+                          companyImgUrl: companiesProvider
+                              .findByID(jobData.selectedJobs[index].companyID)
+                              .imgUrl,
+                          jobType: jobData.selectedJobs[index].jobType,
+                          companyLocation: companiesProvider
+                              .findByID(jobData.selectedJobs[index].companyID)
+                              .headquaters,
+                          companyTitle: companiesProvider
+                              .findByID(jobData.selectedJobs[index].companyID)
+                              .name,
+                          jobTitle: jobData.selectedJobs[index].title,
+                        ),
                       ),
                     ),
                   ),
