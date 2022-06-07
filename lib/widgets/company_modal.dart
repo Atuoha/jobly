@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../constants/color.dart';
 import '../providers/jobs.dart';
 
@@ -10,12 +9,12 @@ class CompanyModal extends StatelessWidget {
   final String companyLocation;
   final List jobs;
 
-  CompanyModal({
+   const CompanyModal({Key? key, 
     required this.name,
     required this.companyImgUrl,
     required this.companyLocation,
     required this.jobs,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +67,6 @@ class CompanyModal extends StatelessWidget {
                         Icons.location_on_outlined,
                         color: kColor2,
                       ),
-                      // const SizedBox(width: 5),
                       Text(
                         companyLocation,
                         maxLines: 1,

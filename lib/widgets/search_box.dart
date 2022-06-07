@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-
 import '../constants/color.dart';
 
 class Searchbox extends StatelessWidget {
   const Searchbox({Key? key}) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20,horizontal:20),
+      margin: const EdgeInsets.symmetric(
+        vertical: 20,
+        horizontal: 20,
+      ),
       height: 255,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -20,7 +21,11 @@ class Searchbox extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 20.0, right: 20, top: 40),
+        padding: const EdgeInsets.only(
+          left: 20.0,
+          right: 20,
+          top: 40,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -33,7 +38,7 @@ class Searchbox extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-             const Text(
+            const Text(
               'You can search quickly for\n the jobs you want',
               style: TextStyle(
                 color: kColor4,
@@ -49,14 +54,16 @@ class Searchbox extends StatelessWidget {
                 color: Colors.white,
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15.0,
+                ),
                 child: Row(
                   children: [
                     Image.asset(
                       'assets/icons/search.png',
                       width: 20,
                     ),
-                    const SizedBox(width:15),
+                    const SizedBox(width: 15),
                     const Expanded(
                       child: TextField(
                         decoration: InputDecoration(

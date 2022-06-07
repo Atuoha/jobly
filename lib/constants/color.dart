@@ -8,7 +8,10 @@ const kColor4 = Color.fromARGB(255, 147, 230, 230);
 const kColor5 = Color.fromARGB(60, 34, 179, 184);
 
 const kGradient = LinearGradient(
-  colors: [Color.fromARGB(255, 248, 247, 247),Color.fromARGB(255, 244, 240, 240), ],
+  colors: [
+    Color.fromARGB(255, 248, 247, 247),
+    Color.fromARGB(255, 244, 240, 240),
+  ],
   begin: FractionalOffset(0.6, 0.0),
   end: FractionalOffset(0.7, 0.0),
   stops: [0.8, 0.0],

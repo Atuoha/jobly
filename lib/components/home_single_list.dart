@@ -37,7 +37,6 @@ class _HomeSingleState extends State<HomeSingle> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   height: 40,
@@ -69,7 +68,6 @@ class _HomeSingleState extends State<HomeSingle> {
                 ),
                 Expanded(
                   child: Container(
-                    // color:Colors.red,
                     alignment: const Alignment(1.9, -2),
                     child: IconButton(
                       onPressed: () {

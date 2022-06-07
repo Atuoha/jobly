@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../constants/color.dart';
 import '../providers/jobs.dart';
 
@@ -89,7 +88,10 @@ class JobModal extends StatelessWidget {
                       alignment: const Alignment(1.3, -2),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(
+                        child: Consumer<JobData>(builder: (context, jobdata,child)=>
+                        
+                        
+                        Icon(
                           Provider.of<JobData>(
                             context,
                             listen: false,
@@ -98,6 +100,8 @@ class JobModal extends StatelessWidget {
                               : Icons.turned_in_not,
                           color: kColor1,
                         ),
+                        
+                        )
                       ),
                     )),
                   ),
@@ -129,7 +133,10 @@ class JobModal extends StatelessWidget {
                 Flexible(
                   child: Text(
                     companyLocation,
-                    style: const TextStyle(color: kColor3, fontSize: 15),
+                    style: const TextStyle(
+                      color: kColor3,
+                      fontSize: 15,
+                    ),
                   ),
                 ),
                 Wrap(
@@ -151,7 +158,7 @@ class JobModal extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             const Text(
               'Requirements',
               style: TextStyle(
@@ -170,7 +177,12 @@ class JobModal extends StatelessWidget {
                   leading: const Icon(
                     Icons.verified_outlined,
                   ),
-                  title: Text(requirements[index], style:TextStyle(color:kColor3)),
+                  title: Text(
+                    requirements[index],
+                    style: const TextStyle(
+                      color: kColor3,
+                    ),
+                  ),
                 ),
               ),
             ),

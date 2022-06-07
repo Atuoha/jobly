@@ -27,9 +27,11 @@ class JobData extends ChangeNotifier {
     switch (isSelected(id)) {
       case true:
         selectedJobs.remove(job);
+        print('Removing....');
         break;
       case false:
         selectedJobs.add(job);
+        print('Adding....');
         break;
       default:
     }

@@ -4,7 +4,6 @@ import 'package:job_apply/providers/companies.dart';
 import 'package:job_apply/providers/job_category.dart';
 import 'package:job_apply/widgets/company_modal.dart';
 import 'package:provider/provider.dart';
-
 import '../components/single_company.dart';
 import '../providers/jobs.dart';
 import '../widgets/search_container.dart';
@@ -21,7 +20,10 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
   late List tags;
   @override
   void initState() {
-    tags = Provider.of<JobCategoryData>(context, listen: false).jobCategories;
+    tags = Provider.of<JobCategoryData>(
+      context,
+      listen: false,
+    ).jobCategories;
 
     super.initState();
   }
@@ -41,11 +43,6 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
     super.didChangeDependencies();
   }
 
-  // List tagScreens = const [
-  //   AllJobs(),
-  //   PopularJobs(),
-  //   FeaturedJobs(),
-  // ];
 
   Widget tagContainer(String title, int index, int catId) {
     return GestureDetector(
@@ -82,22 +79,25 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: tagIndex == index ? Colors.white : Colors.black,
-                      fontSize: 15,
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: tagIndex == index ? Colors.white : Colors.black,
+                        fontSize: 15,
+                      ),
                     ),
-                  ),
-                  tagIndex == index
-                      ? const Icon(
-                          Icons.close,
-                          color: Colors.white,
-                          size: 15,
-                        )
-                      : const Text('')
-                ])
+                    tagIndex == index
+                        ? const Icon(
+                            Icons.close,
+                            color: Colors.white,
+                            size: 15,
+                          )
+                        : const Text('')
+                  ],
+                )
               ],
             ),
           ),
@@ -109,16 +109,23 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var companyData =
-        Provider.of<CompanyData>(context, listen: false).companyCategory;
-    var jobData = Provider.of<JobData>(context, listen: false);
+    var companyData = Provider.of<CompanyData>(
+      context,
+      listen: false,
+    ).companyCategory;
+    var jobData = Provider.of<JobData>(
+      context,
+      listen: false,
+    );
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.0,
+            ),
             child: SearchContainer(),
           ),
           const SizedBox(height: 15),
@@ -138,11 +145,12 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+            ),
             child: SizedBox(
               height: size.height / 1.6,
               child: GridView.count(
-                // padding: EdgeInsets.zero,
                 crossAxisSpacing: 1,
                 mainAxisSpacing: 15,
                 crossAxisCount: 2,

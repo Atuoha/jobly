@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:job_apply/category_home_screens/all.dart';
 import 'package:job_apply/category_home_screens/featured.dart';
 import 'package:job_apply/category_home_screens/popular.dart';
-
 import '../constants/color.dart';
 import '../widgets/search_box.dart';
 
@@ -81,7 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(height: 20),
         Padding(
-          padding: const EdgeInsets.only(left: 20.0),
+          padding: const EdgeInsets.only(
+            left: 20.0,
+          ),
           child: SizedBox(
             height: size.height / 4,
             child: tagScreens[tagIndex],

@@ -10,7 +10,8 @@ class JobSingle extends StatefulWidget {
   final String companyTitle;
   final String jobTitle;
   final String companyLocation;
-  const JobSingle({Key? key, 
+  const JobSingle({
+    Key? key,
     required this.jobId,
     required this.jobType,
     required this.companyImgUrl,
@@ -60,8 +61,8 @@ class _JobSingleState extends State<JobSingle> {
                 ),
                 const SizedBox(width: 10),
                 Flexible(
-                  child:  SizedBox(
-                width: 150,
+                  child: SizedBox(
+                    width: 150,
                     child: Text(
                       widget.companyTitle,
                       style: const TextStyle(
@@ -75,16 +76,15 @@ class _JobSingleState extends State<JobSingle> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: GestureDetector(
-                      onTap: () {
-                        Provider.of<JobData>(
-                          context,
-                          listen: false,
-                        ).toggleSelected(
-                          widget.jobId,
-                        );
-                      },
-                      child:(
-                    Container(
+                    onTap: () {
+                      Provider.of<JobData>(
+                        context,
+                        listen: false,
+                      ).toggleSelected(
+                        widget.jobId,
+                      );
+                    },
+                    child: (Container(
                       width: double.infinity,
                       alignment: const Alignment(1.3, -2),
                       child: Padding(
@@ -99,9 +99,8 @@ class _JobSingleState extends State<JobSingle> {
                           color: kColor1,
                         ),
                       ),
-                    )
+                    )),
                   ),
-                ),
                 ),
               ],
             ),
@@ -130,7 +129,10 @@ class _JobSingleState extends State<JobSingle> {
                 Flexible(
                   child: Text(
                     widget.companyLocation,
-                    style: const TextStyle(color: kColor3, fontSize: 15),
+                    style: const TextStyle(
+                      color: kColor3,
+                      fontSize: 15,
+                    ),
                   ),
                 ),
                 Wrap(
@@ -143,7 +145,10 @@ class _JobSingleState extends State<JobSingle> {
                     const SizedBox(width: 3),
                     Text(
                       widget.jobType,
-                      style: const TextStyle(color: kColor3, fontSize: 15),
+                      style: const TextStyle(
+                        color: kColor3,
+                        fontSize: 15,
+                      ),
                     ),
                   ],
                 )

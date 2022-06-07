@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:job_apply/constants/color.dart';
 import 'package:job_apply/screens/home_screen.dart';
-
 import '../screens/companies_screen.dart';
 import '../screens/profile_screen.dart';
 import '../screens/saved_jobs.dart';
 import 'package:flutter/services.dart';
-
 import '../widgets/top_profile.dart';
 
 class BottomNav extends StatefulWidget {
@@ -26,7 +24,7 @@ class _BottomNavState extends State<BottomNav> {
     ProfileScreen(),
   ];
 
-  void selectePage(int index){
+  void selectePage(int index) {
     setState(() {
       pageIndex = index;
     });
@@ -67,7 +65,7 @@ class _BottomNavState extends State<BottomNav> {
               ),
               label: '',
             ),
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Text(''),
               label: '',
             ),
@@ -88,7 +86,7 @@ class _BottomNavState extends State<BottomNav> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const FloatingActionButton(
-        elevation:3,
+        elevation: 3,
         backgroundColor: kColor2,
         onPressed: null,
         child: Icon(
@@ -99,7 +97,9 @@ class _BottomNavState extends State<BottomNav> {
       // extendBody: true,
       extendBodyBehindAppBar: true,
       body: Container(
-        decoration: const BoxDecoration(gradient: kGradient),
+        decoration: const BoxDecoration(
+          gradient: kGradient,
+        ),
         child: Column(
           children: [
             Padding(
@@ -111,7 +111,7 @@ class _BottomNavState extends State<BottomNav> {
               ),
               child: const TopProfile(),
             ),
-            _pages[pageIndex == 2 ? 3 :pageIndex],
+            _pages[pageIndex == 2 ? 3 : pageIndex],
           ],
         ),
       ),

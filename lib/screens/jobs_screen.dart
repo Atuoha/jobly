@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +6,6 @@ import 'package:job_apply/constants/color.dart';
 import 'package:job_apply/widgets/job_modal.dart';
 import 'package:job_apply/widgets/search_container.dart';
 import 'package:provider/provider.dart';
-
 import '../components/single_job_list.dart';
 import '../providers/companies.dart';
 import '../providers/job_category.dart';
@@ -15,7 +13,6 @@ import '../providers/jobs.dart';
 
 class JobsScreen extends StatefulWidget {
   static const routeName = "/jobs_screen";
-
   const JobsScreen({Key? key}) : super(key: key);
 
   @override
@@ -80,22 +77,25 @@ class _JobsScreenState extends State<JobsScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: tagIndex == index ? Colors.white : Colors.black,
-                      fontSize: 15,
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: tagIndex == index ? Colors.white : Colors.black,
+                        fontSize: 15,
+                      ),
                     ),
-                  ),
-                  tagIndex == index
-                      ? const Icon(
-                          Icons.close,
-                          color: Colors.white,
-                          size: 15,
-                        )
-                      : const Text('')
-                ])
+                    tagIndex == index
+                        ? const Icon(
+                            Icons.close,
+                            color: Colors.white,
+                            size: 15,
+                          )
+                        : const Text('')
+                  ],
+                )
               ],
             ),
           ),
@@ -108,7 +108,10 @@ class _JobsScreenState extends State<JobsScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    var companiesProvider = Provider.of<CompanyData>(context, listen: false);
+    var companiesProvider = Provider.of<CompanyData>(
+      context,
+      listen: false,
+    );
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -125,10 +128,15 @@ class _JobsScreenState extends State<JobsScreen> {
           return GestureDetector(
             onTap: () => Navigator.of(context).pop(),
             child: Padding(
-              padding: const EdgeInsets.only(left: 20, top: 8.0),
+              padding: const EdgeInsets.only(
+                left: 20,
+                top: 8.0,
+              ),
               child: Container(
-                decoration:
-                    const BoxDecoration(color: kColor1, shape: BoxShape.circle),
+                decoration: const BoxDecoration(
+                  color: kColor1,
+                  shape: BoxShape.circle,
+                ),
                 child: const Icon(
                   Icons.arrow_back,
                   color: Colors.white,
@@ -179,7 +187,9 @@ class _JobsScreenState extends State<JobsScreen> {
         child: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.0,
+              ),
               child: SearchContainer(),
             ),
             const SizedBox(height: 15),
@@ -203,7 +213,9 @@ class _JobsScreenState extends State<JobsScreen> {
                 height: size.height / 1.4,
                 width: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                  ),
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     itemCount: jobData.jobCategories.length,
