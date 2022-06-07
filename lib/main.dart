@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job_apply/providers/companies.dart';
 import 'package:job_apply/providers/job_category.dart';
 import 'package:job_apply/providers/jobs.dart';
+import 'package:job_apply/screens/jobs_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'components/bottom_nav.dart';
@@ -27,7 +28,9 @@ class MyApp extends StatelessWidget {
             primaryColor: kColor1,
           ),
           home: const BottomNav(),
-          routes: {}),
+          routes: {
+            JobsScreen.routeName: (context) => JobsScreen(),
+          }),
     );
   }
 }

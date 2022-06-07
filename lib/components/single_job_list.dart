@@ -3,14 +3,14 @@ import 'package:job_apply/constants/color.dart';
 import 'package:provider/provider.dart';
 import '../providers/jobs.dart';
 
-class SavedJobSingle extends StatefulWidget {
+class JobSingle extends StatefulWidget {
   final int jobId;
   final String jobType;
   final String companyImgUrl;
   final String companyTitle;
   final String jobTitle;
   final String companyLocation;
-  SavedJobSingle({
+  JobSingle({
     required this.jobId,
     required this.jobType,
     required this.companyImgUrl,
@@ -19,10 +19,10 @@ class SavedJobSingle extends StatefulWidget {
     required this.jobTitle,
   });
   @override
-  State<SavedJobSingle> createState() => _SavedJobSingleState();
+  State<JobSingle> createState() => _JobSingleState();
 }
 
-class _SavedJobSingleState extends State<SavedJobSingle> {
+class _JobSingleState extends State<JobSingle> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -39,14 +39,14 @@ class _SavedJobSingleState extends State<SavedJobSingle> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   height: 40,
                   width: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromARGB(255, 229, 226, 226).withOpacity(0.2),
+                    color: const Color.fromARGB(255, 229, 226, 226)
+                        .withOpacity(0.2),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -60,39 +60,49 @@ class _SavedJobSingleState extends State<SavedJobSingle> {
                 ),
                 const SizedBox(width: 10),
                 Flexible(
-                  child: Text(
-                    widget.companyTitle,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: kColor3,
-                      fontSize: 18,
+                  child:  SizedBox(
+                width: 150,
+                    child: Text(
+                      widget.companyTitle,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: kColor3,
+                        fontSize: 18,
+                      ),
                     ),
                   ),
                 ),
+                const SizedBox(width: 10),
                 Expanded(
-                  child: Container(
-                    // color:Colors.red,
-                    alignment: const Alignment(2.3, -2),
-                    child: IconButton(
-                      onPressed: () {
+                  child: GestureDetector(
+                      onTap: () {
                         Provider.of<JobData>(
-                          context,listen:false
+                          context,
+                          listen: false,
                         ).toggleSelected(
                           widget.jobId,
                         );
                       },
-                      icon: Icon(
-                        Provider.of<JobData>(
-                          context,
-                          listen: false,
-                        ).isSelected(widget.jobId)
-                            ? Icons.turned_in
-                            : Icons.turned_in_not,
-                        color: kColor1,
+                      child:(
+                    Container(
+                      width: double.infinity,
+                      alignment: const Alignment(1.3, -2),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Provider.of<JobData>(
+                            context,
+                            listen: false,
+                          ).isSelected(widget.jobId)
+                              ? Icons.turned_in
+                              : Icons.turned_in_not,
+                          color: kColor1,
+                        ),
                       ),
-                    ),
+                    )
                   ),
-                )
+                ),
+                ),
               ],
             ),
             const SizedBox(
@@ -120,26 +130,21 @@ class _SavedJobSingleState extends State<SavedJobSingle> {
                 Flexible(
                   child: Text(
                     widget.companyLocation,
-                    style: const TextStyle(
-                      color: kColor3,
-                      fontSize: 15
-                    ),
+                    style: const TextStyle(color: kColor3, fontSize: 15),
                   ),
                 ),
                 Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    Icon(
-                  Icons.alarm_sharp,
-                  color: kColor2,
-                ),
-                Text(
-                    widget.jobType,
-                    style: const TextStyle(
-                      color: kColor3,
-                      fontSize: 15
+                    const Icon(
+                      Icons.alarm_sharp,
+                      color: kColor2,
                     ),
-                  ),
+                    const SizedBox(width: 3),
+                    Text(
+                      widget.jobType,
+                      style: const TextStyle(color: kColor3, fontSize: 15),
+                    ),
                   ],
                 )
               ],

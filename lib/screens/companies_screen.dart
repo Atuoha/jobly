@@ -21,6 +21,7 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
   @override
   void initState() {
     tags = Provider.of<JobCategoryData>(context, listen: false).jobCategories;
+
     super.initState();
   }
 
@@ -29,12 +30,13 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
     Provider.of<CompanyData>(
       context,
       listen: false,
-    ).removeCategory();
+    ).removeCompanyCategory();
 
     Provider.of<CompanyData>(
       context,
       listen: false,
     ).checkCompanyCategory(1);
+
     super.didChangeDependencies();
   }
 
@@ -50,16 +52,17 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
         setState(
           () {
             tagIndex = index;
-            Provider.of<CompanyData>(
-              context,
-              listen: false,
-            ).removeCategory();
-            Provider.of<CompanyData>(
-              context,
-              listen: false,
-            ).checkCompanyCategory(tagIndex + 1);
           },
         );
+        Provider.of<CompanyData>(
+          context,
+          listen: false,
+        ).removeCompanyCategory();
+
+        Provider.of<CompanyData>(
+          context,
+          listen: false,
+        ).checkCompanyCategory(tagIndex + 1);
       },
       child: Container(
         margin: const EdgeInsets.only(right: 10),
@@ -152,5 +155,3 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
     );
   }
 }
-
-

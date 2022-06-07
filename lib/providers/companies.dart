@@ -14,10 +14,9 @@ class CompanyData extends ChangeNotifier {
         companyCategory.add(company);
       }
     }
-    notifyListeners();
   }
 
-  void removeCategory() {
+  void removeCompanyCategory() {
     companyCategory.clear();
   }
 

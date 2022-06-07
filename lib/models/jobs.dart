@@ -4,6 +4,7 @@ class Job {
   final String title;
   final String jobType;
   final List<String> requirements;
+  final int categoryId;
 
   Job({
     required this.companyID,
@@ -11,5 +12,6 @@ class Job {
     required this.title,
     required this.jobType,
     required this.requirements,
+    required this.categoryId,
   });
 }

@@ -9,6 +9,8 @@ import '../screens/saved_jobs.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
 
+import '../widgets/top_profile.dart';
+
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
 
@@ -109,65 +111,7 @@ class _BottomNavState extends State<BottomNav> {
                 20,
                 0,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Welcome home',
-                        style: TextStyle(
-                          color: kColor3,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15,
-                        ),
-                      ),
-                      Text(
-                        'Ujunwa Peace',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 30,
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Transform.rotate(
-                        angle: -40 * pi / 180,
-                        child: Badge(
-                          position: const BadgePosition(
-                            start: 20,
-                            isCenter: false,
-                            bottom: 20,
-                          ),
-                          badgeContent: const Text(
-                            '1',
-                            style: TextStyle(
-                              fontSize: 8,
-                              color: Colors.white,
-                            ),
-                          ),
-                          badgeColor: Colors.red,
-                          child: const Icon(
-                            Icons.notifications_outlined,
-                            color: Colors.grey,
-                            size: 30,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 13),
-                      const CircleAvatar(
-                        radius: 25,
-                        backgroundImage: AssetImage(
-                          'assets/images/user2.jpg',
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+              child: const TopProfile(),
             ),
             _pages[pageIndex == 2 ? 3 :pageIndex],
           ],

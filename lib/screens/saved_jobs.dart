@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:job_apply/constants/color.dart';
+import 'package:job_apply/screens/jobs_screen.dart';
 import 'package:provider/provider.dart';
-
-import '../components/home_single_list.dart';
-import '../components/saved_job_single.dart';
+import '../components/single_job_list.dart';
 import '../providers/companies.dart';
 import '../providers/jobs.dart';
 import '../widgets/search_container.dart';
@@ -29,18 +28,23 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
         children: [
           const SearchContainer(),
           const SizedBox(height: 15),
-          Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: const [
-              Icon(Icons.turned_in_not, color: kColor1),
-              Text(
-                'View All Jobs Available Now',
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  color: Colors.black,
-                ),
-              )
-            ],
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed(JobsScreen.routeName);
+            },
+            child: Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: const [
+                Icon(Icons.turned_in_not, color: kColor1),
+                Text(
+                  'View All Jobs Available Now',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    color: Colors.black,
+                  ),
+                )
+              ],
+            ),
           ),
           Consumer<JobData>(
             builder: (context, jobData, child) => jobData.selectedJobs.isEmpty
@@ -70,14 +74,15 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
                     height: size.height / 1.6,
                     width: double.infinity,
                     child: ListView.builder(
-                      // scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.zero,
+
                       itemCount: jobData.selectedJobs.length,
-                      itemBuilder: (context, index) => SavedJobSingle(
+                      itemBuilder: (context, index) => JobSingle(
                         jobId: jobData.selectedJobs[index].id,
                         companyImgUrl: companiesProvider
                             .findByID(jobData.selectedJobs[index].companyID)
                             .imgUrl,
-                        jobType: jobData.selectedJobs[index].jobType,    
+                        jobType: jobData.selectedJobs[index].jobType,
                         companyLocation: companiesProvider
                             .findByID(jobData.selectedJobs[index].companyID)
                             .headquaters,
