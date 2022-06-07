@@ -118,16 +118,23 @@ class _JobsScreenState extends State<JobsScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 20, top: 8.0),
-          child: Container(
-            decoration:
-                const BoxDecoration(color: kColor1, shape: BoxShape.circle),
-            child: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-          ),
+        leading: Builder(
+          builder: (context) {
+            return GestureDetector(
+              onTap: ()=> Navigator.of(context).pop(),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, top: 8.0),
+                child: Container(
+                  decoration:
+                      const BoxDecoration(color: kColor1, shape: BoxShape.circle),
+                  child: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            );
+          }
         ),
         actions: [
           Transform.rotate(
@@ -164,23 +171,29 @@ class _JobsScreenState extends State<JobsScreen> {
         ],
       ),
       body: Container(
-        padding: const EdgeInsets.fromLTRB(20, 100, 20, 0),
+        padding: const EdgeInsets.only(top:100),
         decoration: const BoxDecoration(
           gradient: kGradient,
         ),
         child: Column(
           children: [
-            const SearchContainer(),
+            const Padding(
+              padding:  EdgeInsets.symmetric(horizontal:20.0),
+              child:  SearchContainer(),
+            ),
             const SizedBox(height: 15),
-            SizedBox(
-              height: 32,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: tags.length,
-                itemBuilder: (context, index) => tagContainer(
-                  tags[index].title,
-                  index,
-                  tags[index].id,
+            Padding(
+              padding: const EdgeInsets.only(left:20.0),
+              child: SizedBox(
+                height: 32,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: tags.length,
+                  itemBuilder: (context, index) => tagContainer(
+                    tags[index].title,
+                    index,
+                    tags[index].id,
+                  ),
                 ),
               ),
             ),
@@ -188,22 +201,25 @@ class _JobsScreenState extends State<JobsScreen> {
               builder: (context, jobData, child) => SizedBox(
                 height: size.height / 1.4,
                 width: double.infinity,
-                child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: jobData.jobCategories.length,
-                  itemBuilder: (context, index) => JobSingle(
-                    jobId: jobData.jobCategories[index].id,
-                    companyImgUrl: companiesProvider
-                        .findByID(jobData.jobCategories[index].companyID)
-                        .imgUrl,
-                    jobType: jobData.jobCategories[index].jobType,
-                    companyLocation: companiesProvider
-                        .findByID(jobData.jobCategories[index].companyID)
-                        .headquaters,
-                    companyTitle: companiesProvider
-                        .findByID(jobData.jobCategories[index].companyID)
-                        .name,
-                    jobTitle: jobData.jobCategories[index].title,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:20.0),
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: jobData.jobCategories.length,
+                    itemBuilder: (context, index) => JobSingle(
+                      jobId: jobData.jobCategories[index].id,
+                      companyImgUrl: companiesProvider
+                          .findByID(jobData.jobCategories[index].companyID)
+                          .imgUrl,
+                      jobType: jobData.jobCategories[index].jobType,
+                      companyLocation: companiesProvider
+                          .findByID(jobData.jobCategories[index].companyID)
+                          .headquaters,
+                      companyTitle: companiesProvider
+                          .findByID(jobData.jobCategories[index].companyID)
+                          .name,
+                      jobTitle: jobData.jobCategories[index].title,
+                    ),
                   ),
                 ),
               ),

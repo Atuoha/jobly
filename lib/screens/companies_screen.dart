@@ -111,43 +111,52 @@ class _CompaniesScreenState extends State<CompaniesScreen> {
     var companyData =
         Provider.of<CompanyData>(context, listen: false).companyCategory;
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.only(top: 20.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SearchContainer(),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: SearchContainer(),
+          ),
           const SizedBox(height: 15),
-          SizedBox(
-            height: 32,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: tags.length,
-              itemBuilder: (context, index) => tagContainer(
-                tags[index].title,
-                index,
-                tags[index].id,
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: SizedBox(
+              height: 32,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: tags.length,
+                itemBuilder: (context, index) => tagContainer(
+                  tags[index].title,
+                  index,
+                  tags[index].id,
+                ),
               ),
             ),
           ),
-          SizedBox(
-            height: size.height / 1.6,
-            child: GridView.count(
-              // padding: EdgeInsets.zero,
-              crossAxisSpacing: 1,
-              mainAxisSpacing: 15,
-              crossAxisCount: 2,
-              children: companyData
-                  .map(
-                    (company) => SingleCompany(
-                      companyId: company.id,
-                      companyImgUrl: company.imgUrl,
-                      companyLocation: company.headquaters,
-                      companyTitle: company.name,
-                      desc: company.description,
-                      // type: ,
-                    ),
-                  )
-                  .toList(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: SizedBox(
+              height: size.height / 1.6,
+              child: GridView.count(
+                // padding: EdgeInsets.zero,
+                crossAxisSpacing: 1,
+                mainAxisSpacing: 15,
+                crossAxisCount: 2,
+                children: companyData
+                    .map(
+                      (company) => SingleCompany(
+                        companyId: company.id,
+                        companyImgUrl: company.imgUrl,
+                        companyLocation: company.headquaters,
+                        companyTitle: company.name,
+                        desc: company.description,
+                        // type: ,
+                      ),
+                    )
+                    .toList(),
+              ),
             ),
           )
         ],
